@@ -1,0 +1,202 @@
+中文输入法 
+1 sudo apt-get install fcitx-table-wbpy
+2 System settings--language support--keyboard input method system--fcitx
+3 sudo reboot
+4 configure-- + --pinyin	
+
+鼠标闪
+system settings--Displays--unknown display--off
+
+安装flash
+sudo apt-get install pepperflashplugin-nonfree
+sudo update-pepperflashplugin-nonfree --install
+
+vi修复
+sudo apt-get remove vim-common
+sudo apt-get install vim
+
+Jdk环境变量
+sudo vi /etc/profile
+export JAVA_HOME=/usr/local/jdk1.8.0_25
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:
+export PATH=$JAVA_HOME/bin:$PATH
+
+设置命令行颜色
+vi ~/.bashrc
+export PS1="\[\e[36m\]\u@\h:/\W\$ \[\e[m\]"
+
+git初始化
+git config --global user.name "mfzszgs"
+git config --global user.email "su_wy@outlook.com"
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=3600'
+
+修改tab缩进4字符
+sudo vi /etc/vim/vimrc
+set ts=4
+set expandtab
+
+vim全局替换a为b
+:%s/a/b/g
+
+解压rar
+unrar x .rar .
+
+cpdir
+cp -r
+
+查询显卡
+lspci |grep VGA
+
+html中文乱码
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+tar.bz2
+tar -xjf
+
+ubuntu安装cuda
+tty1 
+sudo stop lightdm
+sudo ./NVIDIA.run --no-opengl-files
+sudo ./cuda.run (do not install driver)
+vi /etc/X11/xorg.conf
+HorizSync 30.0-50.0
+VertRefresh 53.0-60.0
+
+eclipse opencl
+Project--Properties--C/C++Build--Settings--GCCC++Compiler--Includes--Include paths(/usr/local/cuda/include) GCCC++Linker--Libraries--Libraries(OpenCL) Library serch path(/usr/local/cuda/lib64
+gcc MatrixMul.cpp -lOpenCL -L/usr/local/cuda/include/ -L/usr/local/cuda/lib64
+
+Inconsistency detected by ld.so: dl-version.c: 224: _dl_check_map_versions: Assertion `needed != ((void *)0)' failed!
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/mesa/libGL.so.1:$LD_PRELOAD
+
+修改ip
+sudo vi /etc/network/interfaces
+auto eth0
+iface eth0 inet static
+address 116.57.115.113
+netmask 255.255.255.192
+gateway 116.57.115.126
+dns-nameservers 202.112.17.33
+sudo /etc/init.d/networking restart
+
+编码问题
+convmv -f GBK -t UTF-8 1.pdf 
+
+vi .gitignore
+Debug
+RemoteSystemsTempFiles
+.cproject
+.project
+.settings
+.metadata
+
+Android Studio
+sudo apt-get install lib32stdc++6 lib32z1 lib32z1-dev
+
+乱码
+enca -L zh_CN -x utf-8  filename
+alias enca='enca -L zh_CN -x utf-8 '
+
+find . -name "filename*"
+
+du -h . 查看文件大小 -s递归
+
+find . -name 'a*'
+递归查询文件名符合的
+
+grep -rl .  'a*'
+递归查询内容有'a*'的文件
+
+nohut === &
+后台运行 退出不断
+
+Ubuntu 远程桌面
+gsettings set org.gnome.Vino require-encryption false
+dconf write /desktop/gnome/remote-access/require-encryption false
+
+挂载vbox共享文件夹
+mkdir /mnt/dbshare/
+mount -t vboxsf BaiduShare /mnt/bdshare/
+
+maven编译
+注意git checkout 版本
+
+add user 
+su root
+useradd -m  username -g sudo -s /bin/bash -r 
+passwd username 
+
+del user 
+userdel -r username
+ 
+eclipse dark theme
+perference->general->Appearance->color theme->sublime text2
+perference->general->Appearance->Theme->Dark
+
+eclipse no {}
+perference->c/c++->Editor->Typing->
+
+ubuntu+win7
+sudo update-grub
+
+不见了sudo reboot
+sudo apt-get install upstart-sysv
+
+Nouveau
+vi /etc/modprobe.d/nvidia-installer-disable-nouveau.conf
+blacklist nouveau
+blacklist lbm-nouveau
+
+mac install pyopenssl
+env LDFLAGS="-L$(brew --prefix openssl)/lib" CFLAGS="-I$(brew --prefix openssl)/include" pip install cryptography
+
+mac ssh 乱码
+编辑 /etc/ssh_config，注释此行“ SendEnv LANG LC_*”即可。
+
+spark stackoverflow
+--conf spark.executor.extraJavaOptions=-Xss8m --conf spark.driver.extraJavaOptions=-Xss8m
+
+python3
+#coding=utf8
+from __future__ import (division,absolute_import,print_function,unicode_literals)
+
+mac gdb
+codesign -f -s  "gdb-cert"  <gnat_install_prefix>/bin/gdb
+
+locate
+sudo /usr/libexec/locate.updatedb
+
+mac mysql start
+/usr/local/Cellar/mysql/5.7.12/bin/mysql.server start
+UPDATE mysql.user SET Password=PASSWORD('lhr') WHERE User='root'; 
+SET PASSWORD = PASSWORD('lhr');
+
+ss-password-000
+
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+chmod 0600 ~/.ssh/authorized_keys
+
+http://txp-01.tencent.com/proxy_devnet.pac
+http://127.0.0.1:8090/proxy.pac
+
+docker run -t -i ubuntu:14.04 /bin/bash
+
+nc -l 1234
+echo 'test'| nc 127.0.0.1 1234
+
+export TMPDIR=/data1/weiyuesu/tmp
+export TEMP=/data1/weiyuesu/tmp
+
+tmux 
+c create
+x close pane
+& close window
+" horizontal split 
+% vertical split
+
+python args
+parser = argparse.ArgumentParser(description="Run commands")
+parser.add_argument('-w', '--num-workers', default=1, type=int, help="")
+args = parser.parse_args()
